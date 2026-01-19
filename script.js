@@ -47,6 +47,8 @@ if (storedTheme === "dark" || storedTheme === "light") {
   applyTheme(storedTheme);
 } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
   applyTheme("dark");
+} else {
+  applyTheme("light");
 }
 
 if (themeToggle) {
@@ -88,7 +90,7 @@ const animateClose = (details) => {
   }
 
   const onEnd = (event) => {
-    if (event.propertyName !== "max-height") {
+    if (event.propertyName !== "opacity") {
       return;
     }
     details.open = false;

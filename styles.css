@@ -49,11 +49,15 @@ body {
   background: var(--card);
   border-radius: var(--radius);
   padding: clamp(32px, 6vw, 64px);
-  padding-bottom: 96px;
   border: 1px solid var(--stroke);
   max-width: 860px;
   width: 100%;
   position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-content {
   display: grid;
   gap: 20px;
 }
@@ -214,17 +218,36 @@ h1 {
   margin: 0;
 }
 
+.qa-list {
+  margin-top: 12px;
+  display: grid;
+  gap: 6px;
+}
+
+.qa-list p {
+  margin: 0;
+}
+
+.qa-list strong {
+  color: var(--ink);
+}
+
+.qa-answer {
+  margin-left: 0;
+  color: var(--muted);
+  opacity: 0.8;
+}
+
 .posts details .post-body {
   max-height: 0;
   opacity: 0;
   overflow: hidden;
-  opacity: 0;
-  transition: max-height 0.35s ease, opacity 0.25s ease, padding-top 0.35s ease;
+  transition: opacity 0.25s ease, padding-top 0.25s ease;
 }
 
 .posts details.is-open .post-body {
   padding-top: 10px;
-  max-height: 520px;
+  max-height: none;
   opacity: 1;
 }
 
@@ -277,11 +300,8 @@ h1 {
 }
 
 .socials {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 32px;
-  margin-top: 0;
+  margin-top: auto;
+  padding-top: 24px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

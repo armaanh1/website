@@ -204,6 +204,15 @@ h1 {
   object-fit: cover;
 }
 
+.post-inline-image {
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: auto;
+  border-radius: 12px;
+  margin: 0 0 12px;
+}
+
 .post-author a {
   color: var(--accent);
   text-decoration: none;

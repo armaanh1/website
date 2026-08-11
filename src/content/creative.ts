@@ -89,33 +89,13 @@ export type Note = {
 */
 export const notes: Note[] = [
   {
-    id: 'measuring-what-you-optimize',
-    title: 'Measuring what you optimize',
-    date: 'Draft',
-    summary: 'On why the energy number never shows up in the benchmark table.',
+    id: 'figuring-it-out',
+    title: 'We\'ve got work to do.',
+    date: '08-10-2026',
+    summary: 'I\'m figuring it out, follow along.',
     body: [
-      'Placeholder. Accuracy and latency get reported by default; joules almost never do. Write down what you found when you actually instrumented it.',
+      "Let's see if I stay consistent and start blogging. This may devolve into a random amalgamation of thoughts, but I want to try to keep it focused on things I'm actually thinking about. I want to write more, and I want to write better. So here we go!",
     ],
-    draft: true,
-  },
-  {
-    id: 'framing-a-shot-framing-a-system',
-    title: 'Framing a shot, framing a system',
-    date: 'Draft',
-    summary: 'What shooting sideline video taught me about deciding where to cut.',
-    body: [
-      'Placeholder. Both jobs are mostly about what you leave out. Fill this in with the specific moment that made the connection obvious.',
-    ],
-    draft: true,
-  },
-  {
-    id: 'the-part-of-the-job-that-isnt-code',
-    title: "The part of the job that isn't code",
-    date: 'Draft',
-    summary: 'Pipelines, tooling, and the unglamorous surface area around a change.',
-    body: [
-      'Placeholder. You already wrote a version of this in the Collatz post — say it here in your own voice, without the assignment attached.',
-    ],
-    draft: true,
+    draft: false,
   },
 ];

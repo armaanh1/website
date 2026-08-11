@@ -1,0 +1,413 @@
+.cre__tabs {
+  display: flex;
+  gap: 1.75rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.cre__tab {
+  position: relative;
+  padding: 0 0 0.7rem;
+  border: 0;
+  background: none;
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--text-faint);
+  cursor: pointer;
+  transition: color var(--t-fast) var(--ease-out);
+}
+
+.cre__tab:hover {
+  color: var(--text-dim);
+}
+
+.cre__tab.is-on {
+  color: var(--text);
+}
+
+.cre__tab-rule {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--accent);
+}
+
+.cre__panel {
+  animation: cre-lane-in 360ms var(--ease-out) both;
+}
+
+@keyframes cre-lane-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cre__panel {
+    animation-name: cre-lane-fade;
+  }
+
+  @keyframes cre-lane-fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+/* ---- media ---- */
+
+.cre__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 13rem), 1fr));
+  gap: 1rem;
+}
+
+.cre__frame {
+  position: relative;
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.cre__media {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* The whole frame is the play control. */
+.cre__open {
+  display: block;
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+/* Marks a frame as playable; gets out of the way once it is playing. */
+.cre__play {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  display: grid;
+  place-items: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  padding-left: 2px;
+  border-radius: 50%;
+  background: rgba(6, 9, 16, 0.55);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  font-size: 0.6rem;
+  transition: opacity var(--t-base) var(--ease-out);
+}
+
+.cre__frame:hover .cre__play,
+.cre__frame--empty .cre__play {
+  opacity: 0;
+}
+
+.cre__open:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -4px;
+}
+
+/* Vertical and square cuts get their own span so a 9:16 clip isn't a sliver. */
+.cre__grid {
+  grid-auto-flow: dense;
+}
+
+.cre__frame[data-ratio='16/9'] {
+  grid-column: span 2;
+}
+
+@media (max-width: 640px) {
+  .cre__frame[data-ratio='16/9'] {
+    grid-column: span 1;
+  }
+}
+
+/* ---- full-size player ---- */
+
+.cre__lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 5vw, 4rem);
+  background: rgba(6, 9, 16, 0.88);
+  backdrop-filter: blur(8px);
+}
+
+.cre__stage {
+  width: min(100%, 1100px);
+  max-height: 100%;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 40px 90px -40px rgba(0, 0, 0, 0.9);
+}
+
+.cre__stage video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cre__close {
+  position: absolute;
+  top: clamp(1rem, 3vw, 2rem);
+  right: clamp(1rem, 3vw, 2rem);
+  padding: 0.4rem 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.cre__close:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.cre__placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--text-faint);
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 10px,
+      color-mix(in oklab, var(--text) 3.5%, transparent) 10px,
+      color-mix(in oklab, var(--text) 3.5%, transparent) 20px
+    );
+}
+
+.cre__caption {
+  position: absolute;
+  inset: auto 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 1.75rem 0.85rem 0.75rem;
+  /* Fixed dark scrim in both themes — the caption sits over imagery, not over the page. */
+  background: linear-gradient(transparent, rgba(6, 9, 16, 0.82));
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.cre__caption-title {
+  font-size: 0.98rem;
+  font-weight: 500;
+}
+
+.cre__caption-ctx {
+  font-size: 0.82rem;
+  opacity: 0.78;
+}
+
+/* Until a real image is in the frame there is nothing to sit on top of, so the
+   caption drops the scrim and reads in the page's own colours. */
+.cre__frame--empty .cre__caption {
+  background: none;
+  color: var(--text);
+  text-shadow: none;
+}
+
+.cre__frame--empty .cre__caption-ctx {
+  color: var(--text-faint);
+  opacity: 1;
+}
+
+/* ---- writing ---- */
+
+.cre__writing {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: 1rem;
+}
+
+.cre__course {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.2rem 1rem;
+  padding: clamp(1.1rem, 2.5vw, 1.5rem);
+  text-decoration: none;
+  transition:
+    border-color var(--t-base) var(--ease-out),
+    transform var(--t-base) var(--ease-out);
+}
+
+.cre__course:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-2px);
+}
+
+.cre__course:active {
+  transform: translateY(0);
+}
+
+.cre__course-code {
+  grid-column: 1;
+  font-size: 0.92rem;
+  color: var(--accent);
+}
+
+.cre__course-name {
+  grid-column: 1;
+  margin-top: 0.2rem;
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.cre__course-meta {
+  grid-column: 1;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-faint);
+}
+
+.cre__course-go {
+  grid-row: 1 / span 3;
+  grid-column: 2;
+  color: var(--text-faint);
+  font-size: 1.1rem;
+  transition: transform var(--t-base) var(--ease-out), color var(--t-base) var(--ease-out);
+}
+
+.cre__course:hover .cre__course-go {
+  transform: translateX(3px);
+  color: var(--accent);
+}
+
+/* ---- notes ---- */
+
+.cre__notes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+
+.cre__note {
+  border-bottom: 1px solid var(--line);
+}
+
+.cre__note-head {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 0.2rem 1rem;
+  width: 100%;
+  padding: 1.1rem 0.2rem;
+  border: 0;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.cre__note-date {
+  grid-row: 1 / span 2;
+  font-size: 0.9rem;
+  color: var(--text-faint);
+}
+
+.cre__note-title {
+  /* Explicit, because a draft has no date and the hidden date span frees up
+     column 1 — auto-placement drops the title into that 5.5rem gutter. */
+  grid-column: 2;
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 1.45rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.cre__note-sum {
+  grid-column: 2;
+  margin-top: 0.25rem;
+  font-size: 1rem;
+  color: var(--text-dim);
+}
+
+.cre__draft {
+  grid-row: 1;
+  grid-column: 3;
+  padding: 0.14rem 0.6rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--text) 6%, transparent);
+  font-size: 0.8rem;
+  color: var(--text-faint);
+}
+
+.cre__note-body {
+  padding: 0 0.2rem 1.3rem;
+}
+
+.cre__note-body p + p {
+  margin-top: 0.9rem;
+}
+
+/* A draft has no date to show, so don't reserve a line for it. */
+.cre__note-date:empty {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .cre__note-head {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      'date  date'
+      'title badge'
+      'sum   sum';
+  }
+
+  .cre__note-date {
+    grid-area: date;
+    grid-row: auto;
+  }
+
+  .cre__note-title {
+    grid-area: title;
+    font-size: 1.3rem;
+  }
+
+  .cre__note-sum {
+    grid-area: sum;
+  }
+
+  .cre__draft {
+    grid-area: badge;
+    align-self: center;
+  }
+}

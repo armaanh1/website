@@ -1,0 +1,79 @@
+/*
+  Palette: warm paper and clay. Calm, editorial, generous — the technical
+  vocabulary lives inside the pipeline, not in the page around it.
+
+    paper  #f5f2ea   warm ground
+    ivory  #fcfaf6   raised surface
+    bark   #1d1b17   warm near-black
+    umber  #272420   raised surface, dark
+    clay   #b85c33   accent, light
+    ember  #e0895f   accent, dark
+*/
+:root {
+  --clay: #b85c33;
+  --ember: #e0895f;
+  --sage: #6e7f63;
+  --slate: #5c6b7a;
+
+  --font-display: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  --measure: 66ch;
+  --gutter: clamp(1.5rem, 6vw, 5rem);
+  --shell: 1120px;
+
+  /* Softer geometry throughout. */
+  --radius-sm: 10px;
+  --radius: 18px;
+  --radius-lg: 26px;
+
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --t-fast: 140ms;
+  --t-base: 260ms;
+}
+
+:root[data-theme='light'] {
+  --bg: #f5f2ea;
+  --bg-deep: #ece7db;
+  --surface: #fcfaf6;
+  --surface-2: #ffffff;
+  --line: #e2dbcb;
+  --line-strong: #cdc3ae;
+  --text: #1d1b17;
+  --text-dim: #5f594e;
+  --text-faint: #8d8677;
+  --accent: var(--clay);
+  /* Derived from --accent so a custom colour carries through every surface. */
+  --accent-soft: color-mix(in oklab, var(--accent) 15%, var(--surface));
+  --accent-ink: #fffaf5;
+  --glass: rgba(245, 242, 234, 0.72);
+  --shadow: 0 20px 50px -34px rgba(29, 27, 23, 0.34);
+  --halo: radial-gradient(
+    ellipse 90% 55% at 50% -8%,
+    color-mix(in oklab, var(--accent) 10%, transparent),
+    transparent 70%
+  );
+}
+
+:root[data-theme='dark'] {
+  --bg: #1a1815;
+  --bg-deep: #131110;
+  --surface: #232019;
+  --surface-2: #2b2721;
+  --line: #38332b;
+  --line-strong: #4d463c;
+  --text: #f2eee5;
+  --text-dim: #a8a094;
+  --text-faint: #7d7669;
+  --accent: var(--ember);
+  --accent-soft: color-mix(in oklab, var(--accent) 20%, var(--surface));
+  --accent-ink: #1a1815;
+  --glass: rgba(26, 24, 21, 0.72);
+  --shadow: 0 24px 60px -34px rgba(0, 0, 0, 0.7);
+  --halo: radial-gradient(
+    ellipse 90% 55% at 50% -8%,
+    color-mix(in oklab, var(--accent) 10%, transparent),
+    transparent 70%
+  );
+}

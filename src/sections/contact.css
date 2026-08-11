@@ -1,0 +1,55 @@
+.contact__title {
+  margin: 0.5rem 0 clamp(1.75rem, 4vw, 2.75rem);
+  font-size: clamp(2.8rem, 8vw, 5.6rem);
+  font-weight: 300;
+}
+
+.contact__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.25rem 2rem;
+}
+
+.contact__email {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  font-size: clamp(0.95rem, 2.2vw, 1.06rem);
+  cursor: pointer;
+  transition:
+    border-color var(--t-fast) var(--ease-out),
+    transform var(--t-fast) var(--ease-out);
+}
+
+.contact__email:hover {
+  border-color: var(--line-strong);
+}
+
+.contact__email:active {
+  transform: scale(0.98);
+}
+
+.contact__copied {
+  padding: 0.14rem 0.6rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--text) 8%, transparent);
+  font-size: 0.82rem;
+  color: var(--text-faint);
+  transition: background-color var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out);
+}
+
+.contact__copied.is-on {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.contact__links {
+  display: flex;
+  gap: 1.5rem;
+}

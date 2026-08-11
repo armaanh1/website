@@ -1,0 +1,108 @@
+/* Sections are separated by air, not by rules. */
+.section {
+  padding-block: clamp(4rem, 10vw, 8rem);
+}
+
+.section__head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+  /* Last baseline, not box bottom: the display serif and the small note have
+     very different leading, so aligning their boxes leaves the text itself
+     sitting on two different lines. */
+  align-items: last baseline;
+  gap: 1rem 3rem;
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
+}
+
+.section__title {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: clamp(2.1rem, 4.6vw, 3.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.022em;
+}
+
+.section__note {
+  /* Anchored to the right edge of the grid: the measure is narrower than its
+     column, so left-aligning it left the block ending ~47px short of the
+     right edge every other element on the page lands on. */
+  justify-self: end;
+  max-width: 42ch;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-faint);
+}
+
+@media (max-width: 760px) {
+  .section__head {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+  }
+
+  /* One column: the note goes back under the title, flush left. */
+  .section__note {
+    justify-self: start;
+  }
+}
+
+/* ---- shared vocabulary ---- */
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.chip {
+  display: inline-block;
+  padding: 0.22rem 0.7rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--text) 5%, transparent);
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.link-out {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.94rem;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.link-out::after {
+  content: '↗';
+  font-size: 0.85em;
+  transition: transform var(--t-fast) var(--ease-out);
+}
+
+.link-out:hover::after {
+  transform: translate(2px, -2px);
+}
+
+.skip-link {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -140%);
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.skip-link:focus-visible {
+  transform: translate(-50%, 0);
+}

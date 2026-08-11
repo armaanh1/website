@@ -1,0 +1,200 @@
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: var(--glass);
+  backdrop-filter: blur(20px) saturate(180%);
+}
+
+/* A soft scroll edge below the bar rather than a hard 1px rule, without
+   thinning the bar itself — content passing under has to stay unreadable. */
+.nav::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 1.75rem;
+  pointer-events: none;
+  background: linear-gradient(var(--glass), transparent);
+  backdrop-filter: blur(4px);
+  mask-image: linear-gradient(#000, transparent);
+}
+
+.nav__inner {
+  width: min(100% - var(--gutter) * 2, var(--shell));
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 2.5rem);
+  height: 4rem;
+}
+
+.nav__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-right: auto; /* everything else sits together on the right */
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.nav__mark {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.nav__name {
+  font-size: 0.98rem;
+  font-weight: 500;
+  letter-spacing: -0.008em;
+}
+
+.nav__links {
+  display: flex;
+  gap: 0.15rem;
+}
+
+.nav__link {
+  padding: 0.34rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.94rem;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color var(--t-fast) var(--ease-out), background-color var(--t-fast) var(--ease-out);
+}
+
+.nav__link:hover {
+  color: var(--text);
+  background: color-mix(in oklab, var(--text) 7%, transparent);
+}
+
+.nav__link.is-active {
+  color: var(--accent);
+}
+
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.nav__cmd {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.32rem 0.5rem 0.32rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--surface) 70%, transparent);
+  font-size: 0.88rem;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: transform var(--t-fast) var(--ease-out), border-color var(--t-fast) var(--ease-out);
+}
+
+.nav__cmd:hover {
+  border-color: var(--line-strong);
+  color: var(--text);
+}
+
+.nav__cmd:active {
+  transform: scale(0.97);
+}
+
+.nav__cmd kbd {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  padding: 0.1rem 0.36rem;
+  border-radius: 6px;
+  background: color-mix(in oklab, var(--text) 10%, transparent);
+  color: var(--text-faint);
+}
+
+.nav__theme {
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  line-height: 0;
+}
+
+.nav__theme-track {
+  display: block;
+  position: relative;
+  width: 52px;
+  height: 26px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--surface) 70%, transparent);
+  transition: border-color var(--t-fast) var(--ease-out);
+}
+
+.nav__theme:hover .nav__theme-track {
+  border-color: var(--line-strong);
+}
+
+.nav__theme-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent);
+  /* Named so the page cross-fade animates the thumb's position instead of
+     folding it into the snapshot, where it would jump rather than slide.
+     The transition covers browsers without View Transitions. */
+  view-transition-name: theme-thumb;
+  transition: transform 320ms var(--ease-out);
+}
+
+::view-transition-group(theme-thumb) {
+  animation-duration: 300ms;
+  animation-timing-function: var(--ease-out);
+}
+
+/* Sun on the left, moon on the right; the thumb rests over the active one. */
+:root[data-theme='dark'] .nav__theme-thumb {
+  transform: translateX(26px);
+}
+
+.nav__theme-icon {
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  margin-top: -6px;
+  color: var(--text-faint);
+  transition: color 300ms var(--ease-out);
+}
+
+.nav__theme-icon--sun {
+  left: 6px;
+}
+
+.nav__theme-icon--moon {
+  right: 6px;
+}
+
+:root[data-theme='light'] .nav__theme-icon--sun,
+:root[data-theme='dark'] .nav__theme-icon--moon {
+  color: var(--accent-ink);
+}
+
+@media (max-width: 820px) {
+  .nav__links {
+    display: none;
+  }
+
+  /* No keyboard to press on a phone — keep the word, drop the shortcut. */
+  .nav__cmd kbd {
+    display: none;
+  }
+
+  .nav__cmd {
+    padding-inline: 0.9rem;
+  }
+}

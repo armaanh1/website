@@ -1,0 +1,121 @@
+.proj {
+  --proj-pad: clamp(1.1rem, 2.5vw, 1.6rem);
+  --proj-gap: clamp(1rem, 3vw, 2rem);
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.proj__card {
+  overflow: hidden;
+  transition: border-color var(--t-base) var(--ease-out);
+}
+
+.proj__card.is-open {
+  border-color: var(--line-strong);
+}
+
+.proj__toggle {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--proj-gap);
+  width: 100%;
+  padding: var(--proj-pad);
+  border: 0;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.proj__name {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: clamp(1.35rem, 2.6vw, 1.75rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.proj__span {
+  margin-top: 0.3rem;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: var(--text-faint);
+}
+
+.proj__blurb {
+  margin-top: 0.6rem;
+  max-width: 56ch;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--text-dim);
+}
+
+.proj__chevron {
+  color: var(--text-faint);
+  font-size: 1rem;
+  transition: transform var(--t-base) var(--ease-out), color var(--t-base) var(--ease-out);
+}
+
+.proj__chevron.is-open {
+  transform: rotate(180deg);
+  color: var(--accent);
+}
+
+.proj__detail-inner {
+  padding: 1.2rem var(--proj-pad) clamp(1.3rem, 2.5vw, 1.8rem);
+  border-top: 1px solid var(--line);
+  margin-top: 0.2rem;
+}
+
+.proj__bullets {
+  margin: 0 0 1.35rem;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.proj__bullets li {
+  position: relative;
+  padding-left: 1.3rem;
+  max-width: 68ch;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-dim);
+}
+
+.proj__bullets li::before {
+  content: '';
+  position: absolute;
+  left: 0.15rem;
+  top: 0.72em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.proj__links {
+  display: flex;
+  gap: 1.25rem;
+  margin-top: 1.35rem;
+}
+
+@media (max-width: 640px) {
+  .proj__toggle {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .proj__chevron {
+    display: none;
+  }
+
+  .proj {
+    --proj-gap: 1rem;
+  }
+
+}

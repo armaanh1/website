@@ -1,60 +1,52 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Armaan Hirani's Portfolio</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title>Armaan Hirani — Software Engineer</title>
+    <meta
+      name="description"
+      content="Armaan Hirani is a software engineer working on cloud and ML infrastructure, with a habit of taking systems apart to see what they cost."
+    />
+    <link rel="canonical" href="https://www.armaanhirani.com/" />
+    <meta property="og:title" content="Armaan Hirani — Software Engineer" />
+    <meta
+      property="og:description"
+      content="Software engineer working on cloud and ML infrastructure. Currently at Google Cloud AI."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.armaanhirani.com/" />
+    <meta property="og:image" content="https://www.armaanhirani.com/assets/images/author-image.jpg" />
+    <meta name="twitter:card" content="summary" />
+
+    <!-- Paint the stored theme before first frame so there is no flash. -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var theme =
+            stored === 'light' || stored === 'dark'
+              ? stored
+              : window.matchMedia('(prefers-color-scheme: dark)').matches
+                ? 'dark'
+                : 'light';
+          document.documentElement.dataset.theme = theme;
+        } catch (e) {
+          document.documentElement.dataset.theme = 'light';
+        }
+      })();
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Work+Sans:wght@300;400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300..600&family=DM+Sans:opsz,wght@9..40,300..600&family=IBM+Plex+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    <script type="module" crossorigin src="/build/index-sQtMr1t0.js"></script>
+    <link rel="stylesheet" crossorigin href="/build/index-DVedCp5X.css">
   </head>
   <body>
-    <main class="page">
-      <section class="card">
-        <button class="theme-toggle" type="button" data-theme-toggle>
-          Dark mode
-        </button>
-        <div class="card-content">
-          <h1>Welcome!</h1>
-          <p class="lede">
-            I'm Armaan Hirani, a Junior at the University of Texas at Austin. 
-            Welcome to my portfolio
-            <span class="lede-small">(which is currently under construction)!</span>
-          </p>
-          <div class="actions">
-            <a class="btn" href="https://www.linkedin.com/in/armaan-hirani/">
-              <span>Say Hey!</span>
-            </a>
-          </div>
-          <p class="links">
-            If you're here for my blog posts, here they are:
-            <a href="cs-373.html">CS 373</a> | <a href="cs-371p.html">CS 371P</a>
-          </p>
-        </div>
-        <div class="socials">
-          <a class="social-link" href="https://www.linkedin.com/in/armaan-hirani/" aria-label="LinkedIn">
-            <img
-              src="assets/icons/linkedin-black.svg"
-              data-icon-light="assets/icons/linkedin-black.svg"
-              data-icon-dark="assets/icons/linkedin-white.svg"
-              alt=""
-            />
-          </a>
-          <a class="social-link" href="https://github.com/armaanh1" aria-label="GitHub">
-            <img
-              src="assets/icons/github-black.svg"
-              data-icon-light="assets/icons/github-black.svg"
-              data-icon-dark="assets/icons/github-white.svg"
-              alt=""
-            />
-          </a>
-        </div>
-      </section>
-    </main>
-    <script src="script.js"></script>
+    <div id="root"></div>
   </body>
 </html>

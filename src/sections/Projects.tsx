@@ -16,7 +16,7 @@ export default function Projects() {
             Projects
           </h2>
           <p className="section__note">
-            Two things I built to answer a question nobody assigned me.
+            Cool stuff I've made.
           </p>
         </div>
 

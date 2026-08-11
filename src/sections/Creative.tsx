@@ -9,7 +9,7 @@ import './creative.css';
 type Lane = 'media' | 'writing' | 'notes';
 
 const LANES: { id: Lane; label: string; note: string }[] = [
-  { id: 'media', label: 'Media', note: 'Cool stuff, I like video more than photo.' },
+  { id: 'media', label: 'Media', note: 'Cool stuff. I like video more than photo.' },
   { id: 'writing', label: 'Writing', note: 'Coursework blogs, kept intact from where they started.' },
   { id: 'notes', label: 'Notes', note: 'Shorter thinking, nothing assigned.' },
 ];

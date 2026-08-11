@@ -89,6 +89,38 @@
   object-fit: cover;
 }
 
+/* A glow breathing out from behind the frame marks the clip that is actually
+   playing. It has to be the frame's own box-shadow rather than a blurred
+   pseudo-element: the frame clips its children, so anything drawn outside the
+   edge as a child would be cut off. Blur stays under the 1rem grid gap so the
+   halo doesn't wash into neighbouring cells. */
+.cre__frame[data-playing] {
+  animation: cre-pulse 1.9s var(--ease-out) infinite alternate;
+}
+
+@keyframes cre-pulse {
+  from {
+    box-shadow:
+      0 0 0 1px color-mix(in oklab, var(--accent) 30%, transparent),
+      0 0 10px -2px color-mix(in oklab, var(--accent) 35%, transparent);
+  }
+  to {
+    box-shadow:
+      0 0 0 2px color-mix(in oklab, var(--accent) 65%, transparent),
+      0 0 22px 2px color-mix(in oklab, var(--accent) 55%, transparent);
+  }
+}
+
+/* Still says "this one is playing", just without the breathing. */
+@media (prefers-reduced-motion: reduce) {
+  .cre__frame[data-playing] {
+    animation: none;
+    box-shadow:
+      0 0 0 2px color-mix(in oklab, var(--accent) 50%, transparent),
+      0 0 16px -2px color-mix(in oklab, var(--accent) 45%, transparent);
+  }
+}
+
 /* The whole frame is the play control. */
 .cre__open {
   display: block;

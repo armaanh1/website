@@ -142,6 +142,15 @@ export default function Creative() {
                           disablePictureInPicture
                           draggable={false}
                           onContextMenu={(ev) => ev.preventDefault()}
+                          /* Flag the frame off the element's own events rather
+                             than off hover: a muted-fallback or a refused
+                             play() should not light the ring. */
+                          onPlay={(ev) =>
+                            ev.currentTarget.closest('.cre__frame')?.setAttribute('data-playing', '')
+                          }
+                          onPause={(ev) =>
+                            ev.currentTarget.closest('.cre__frame')?.removeAttribute('data-playing')
+                          }
                         />
                         <span className="cre__play" aria-hidden="true">
                           ▶
